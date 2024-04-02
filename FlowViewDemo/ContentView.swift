@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isPresentingFlowView: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Button("Begin Flow") {
+            isPresentingFlowView = true
         }
-        .padding()
+        .fullScreenCover(isPresented: $isPresentingFlowView) {
+            FlowView(firstStep: .ageEntry, data: FlowData())
+        }
     }
 }
 
